@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-handlebars-precompile": "^1.0.2"
   },
   "scripts": {
     "dev": "parcel src/index.html",
@@ -10,6 +11,7 @@
   },
   "homepage": "https://kate-osadcha.github.io/goit-js-hw-10-food-service/",
   "dependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "parcel-plugin-handlebars": "^0.4.4"
   }
 }
