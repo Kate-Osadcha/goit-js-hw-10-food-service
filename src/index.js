@@ -1,7 +1,7 @@
 import menuElement from'./menu.json';
 import menuTemplate from './templates/menu-item.hbs'
-
 import './styles.css';
+import './changeTheme.js';
 
 // console.log(menuTemplate(menuElement[0]));
 
