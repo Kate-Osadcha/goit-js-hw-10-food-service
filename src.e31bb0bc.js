@@ -2383,7 +2383,47 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"changeTheme.js":[function(require,module,exports) {
+var Theme = {
+  LIGHT: "light-theme",
+  DARK: "dark-theme"
+};
+var switchRef = document.querySelector("#theme-switch-toggle");
+var bodyRef = document.querySelector("body");
+
+function setClassList() {
+  var check = switchRef.checked;
+
+  if (check) {
+    bodyRef.classList.add(Theme.DARK);
+    bodyRef.classList.remove(Theme.LIGHT);
+  } else {
+    bodyRef.classList.remove(Theme.DARK);
+    bodyRef.classList.add(Theme.LIGHT);
+  }
+}
+
+switchRef.addEventListener("change", setClassList);
+
+function setLocalStorage() {
+  var check = switchRef.checked;
+
+  if (check) {
+    localStorage.setItem("theme", Theme.DARK);
+  } else {
+    localStorage.removeItem("theme", Theme.DARK);
+    localStorage.setItem("theme", Theme.LIGHT);
+  }
+}
+
+switchRef.addEventListener("change", setLocalStorage);
+var themeInLocalStorage = localStorage.getItem('theme');
+
+if (themeInLocalStorage === Theme.DARK) {
+  bodyRef.classList.add(Theme.DARK);
+  switchRef.checked = true;
+}
+},{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _menu = _interopRequireDefault(require("./menu.json"));
@@ -2391,6 +2431,8 @@ var _menu = _interopRequireDefault(require("./menu.json"));
 var _menuItem = _interopRequireDefault(require("./templates/menu-item.hbs"));
 
 require("./styles.css");
+
+require("./changeTheme.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2403,7 +2445,7 @@ function menuCreateMarcup(arr) {
 }
 
 menu.insertAdjacentHTML("beforeend", cardsMenuMarcup);
-},{"./menu.json":"menu.json","./templates/menu-item.hbs":"templates/menu-item.hbs","./styles.css":"styles.css"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./menu.json":"menu.json","./templates/menu-item.hbs":"templates/menu-item.hbs","./styles.css":"styles.css","./changeTheme.js":"changeTheme.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -2431,7 +2473,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62645" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62830" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
